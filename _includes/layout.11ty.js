@@ -44,6 +44,11 @@ module.exports = async function(data) {
 		<title>${data.metadata.username}’s Twitter Archive${titleTweetNumberStr}</title>
 		<meta name="description" content="${meta_description}" />
 
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+		<link rel="apple-touch-icon" sizes="512x512" href="/assets/favicon-512.png">
+		<link rel="shortcut icon" href="/assets/favicon.ico">
+
+
 		<link rel="profile" href="https://microformats.org/profile/hatom">
 		<link rel="stylesheet" href="/assets/style.css">
 		<script src="/assets/script.js" type="module"></script>
