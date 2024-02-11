@@ -259,17 +259,22 @@ class Index extends Twitter {
 		let linksCount12Months = links12Months.length;
 		let httpsLinksCount12Months = links12Months.filter(entry => entry.origin.startsWith("https:")).length;
 		return `
-		<h2 class="tweets-primary-count">
-			<span class="tweets-primary-count-num">${this.renderNumber(tweetCount)}</span> tweet${tweetCount !== 1 ? "s" : ""}
+		<div class="tweets-primary-count">
+		<h2>
+			Mike's Twitter archive containing <strong class="tweets-primary-count-num">${this.renderNumber(tweetCount)}</strong> tweets
 		</h2>
+		<p>This is a collection of my tweets over the 14 years I was there Tweeting.</p>.
+		</div>
 
 		<is-land on:visible on:save-data="false">
 			<template data-island>
-				<h2>Search Tweets:</h2>
-				<div class="tweets-search">
-					<div id="search" class="tweets-search"></div>
-					<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
-					<script src="/_pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>
+				<div class="search">
+					<h2>Search Tweets:</h2>
+					<div class="tweets-search">
+						<div id="search" class="tweets-search"></div>
+						<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+						<script src="/_pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>
+					</div>
 				</div>
 			</template>
 		</is-land>
@@ -297,12 +302,6 @@ class Index extends Twitter {
 					${this.getTopUsersToRetweets(tweets).slice(0, 10).map(user => `<li><a href="${twitterLink(`https://twitter.com/${user.username}`)}">${user.username}</a> ${user.count} retweet${user.count != 1 ? "s" : ""}</li>`).join("")}
 				</ol>
 			</div>
-			<div class="lo-c">
-				<h3>Most Retweeted (Last 12 months)</h3>
-				<ol>
-					${this.getTopUsersToRetweets(last12MonthsTweets).slice(0, 10).map(user => `<li><a href="${twitterLink(`https://twitter.com/${user.username}`)}">${user.username}</a> ${user.count} retweet${user.count != 1 ? "s" : ""}</li>`).join("")}
-				</ol>
-			</div>
 		</div>
 
 		<h2 id="replies">Replies and Mentions</h2>
@@ -312,12 +311,6 @@ class Index extends Twitter {
 				<h4>Most Replies To</h4>
 				<ol>
 					${this.getTopReplies(tweets).slice(0, 5).map(user => `<li><a href="${twitterLink(`https://twitter.com/${user.username}`)}">${user.username}</a> ${user.count} repl${user.count != 1 ? "ies" : "y"}</li>`).join("")}
-				</ol>
-			</div>
-			<div class="lo-c">
-				<h4>Most Replies To (Last 12 months)</h4>
-				<ol>
-					${this.getTopReplies(last12MonthsTweets).slice(0, 5).map(user => `<li><a href="${twitterLink(`https://twitter.com/${user.username}`)}">${user.username}</a> ${user.count} repl${user.count != 1 ? "ies" : "y"}</li>`).join("")}
 				</ol>
 			</div>
 		</div>
@@ -363,10 +356,6 @@ class Index extends Twitter {
 
 		<template id="rendered-twitter-link"><a href="/1234567890123456789/">twitter link</a></template>
 `;
-		// <h3>Before 2012, it was not possible to tell the difference between a mention and reply. This happened ${this.renderNumber(ambiguousReplyMentionCount)} times (${this.renderPercentage(ambiguousReplyMentionCount, tweetCount)})</h3>
-
-		// <h3>I’ve sent someone a mention ${this.renderNumber(mentionNotReplyCount)} times (${this.renderPercentage(mentionNotReplyCount, tweetCount)})</h3>
-		// <p>Mentions are tweets sent to a single person but not as a reply to an existing tweet. Note that this number is overinflated for old data—Twitter didn’t support official replies before July 2012.</p>
 	}
 }
 

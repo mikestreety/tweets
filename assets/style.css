@@ -1,3 +1,31 @@
+:root {
+	--base: #1c1e21;
+
+	--primary: #2b76b9;
+	--primaryLighter: #9AD8EA;
+	--primaryLight: #2cacd1;
+	--primaryDark: #1F5584;
+	--primaryDarker: #133553;
+
+	--secondary: #3d3393;
+	--secondaryDark: #26205B;
+
+	--tertiary: #35eb93;
+	--tertiaryLight: #6AF0B0;
+
+	--quaternary: #cf2226;
+
+	--quinary: #ffc200;
+
+	--neutralDark: #666;
+	--neutralMid: #bbb;
+	--neutralLight: #eee;
+	--neutralLighter: #f2f2f2;
+	--neutralLightest: #fff;
+
+	--gutter: 1.5rem;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -5,11 +33,12 @@ html {
 	height: 100%;
 }
 body {
-	max-width: 60em;
+	--pagefind-ui-scale: 1;
+	max-width: 40rem;
 	min-height: 100%;
 	font-family: system-ui, sans-serif;
 	margin: 0 auto;
-	padding: .5em;
+	padding: 1.5rem;
 }
 footer {
 	font-size: 0.875em; /* 14px /16 */
@@ -20,8 +49,17 @@ footer {
 }
 :link,
 :visited {
-	color: #1C4A1D;
-	text-decoration-color: #17bf63;
+	text-decoration: none;
+	color: var(--color, var(--primary));
+	transition: ease 0.3s;
+	transition-property: color, box-shadow, opacity;
+	display: inline;
+	box-shadow: inset 0 -0.1rem 0 0 var(--boxshadowcolor, currentColor);
+}
+:link:hover,
+:visited:hover {
+	box-shadow: inset 0 var(--boxshadowheight, -0.9em) 0 0 var(--boxshadowcolor, var(--tertiaryLight));
+	color: var(--base);
 }
 .sr-only {
 	position: absolute !important;
@@ -40,6 +78,10 @@ button {
 }
 button {
 	border-radius: 0.2em; /* 4px /20 */
+}
+
+h2 {
+	margin-top: 0;
 }
 
 /* Flex lib */
@@ -102,12 +144,14 @@ button {
 	}
 }
 .tweets-primary-count {
-	font-size: 4em;
-	margin: 2em 0 1em;
+	font-size: 1.4em;
+	margin: 3em 0 0.5em;
 	padding: 0 0 2em;
 	text-align: center;
-	border-bottom: 2px solid #eee;
 	font-weight: 400;
+}
+.tweets-primary-count h2 {
+	font-size: 1.8em;
 }
 .tweets-primary-count-num {
 	font-weight: 900;
@@ -115,8 +159,7 @@ button {
 
 /* Tweet list */
 .tweets {
-	max-width: 40em;
-	margin: 4em auto;
+	margin: 1.5rem auto;
 	padding: 0;
 }
 .tweets .tweets-replies {
@@ -133,8 +176,8 @@ button {
 	margin-bottom: 15vh;
 }
 .tweets-linear-list .tweet {
-	margin-bottom: 3.5rem;
-	padding-bottom: 3.5rem;
+	margin-bottom: 1.5rem;
+	padding-bottom: 1.5rem;
 	border-bottom: 1px solid #ccc;
 }
 
@@ -158,7 +201,6 @@ button {
 .tweet-username,
 .tweet-username:visited {
 	color: inherit;
-	font-size: 0.9545454545455em; /* 21px /22 */
 }
 .tweet-pretext {
 	display: block;
@@ -172,7 +214,7 @@ button {
 }
 .tweet-metadata {
 	display: block;
-	margin-top: .5em;
+	margin-top: 1rem;
 }
 .tweet-metadata,
 .tweet-metadata :link,
@@ -182,8 +224,8 @@ button {
 
 /* Individual tweet */
 .tweet {
-	font-size: 1.625em; /* 26px /16 */
-	margin: 0 0 3.5rem;
+	font-size: 1rem; /* 26px /16 */
+	margin: 0 0 1.5rem;
 	padding: 0;
 	list-style: none;
 }
@@ -207,7 +249,6 @@ button {
 	width: 27px;
 	height: 27px;
 	margin-bottom: -3px;
-	border-radius: 50%;
 }
 h1 .tweet-avatar {
 	vertical-align: text-bottom;
@@ -217,8 +258,7 @@ h1 .tweet-avatar {
 /* Tweet Media */
 .tweet-medias {
 	display: flex;
-	margin: 1em 0 0;
-	max-height: 10em;
+	margin: 1.5rem 0 0;
 	gap: .5em;
 }
 .tweet-medias > a {
@@ -228,7 +268,6 @@ h1 .tweet-avatar {
 }
 .tweet-media {
 	border-radius: .25em;
-	box-shadow: 0 0px 18px 3px rgb(0 0 0 / 40%);
 }
 img.tweet-media {
 	display: block;
@@ -357,8 +396,13 @@ img.tweet-media-og {
 }
 
 /* Search form */
-.tweets-search {
-	margin: 0 auto;
-	max-width: 40rem; /* 640px /16 */
+.search {
+	padding: 1.5rem;
+	background-color: #f2f2f2;
+	border-bottom: 0.2rem solid #1c1e21;
 	font-size: 1.25em; /* 20px /16 */
+	margin-bottom: 1.5rem;
+}
+.search .tweets-search form input {
+	border-color: #1c1e21;
 }
